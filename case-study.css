@@ -723,6 +723,11 @@
 }
 
 
+/* Remove bottom padding from dark section when it ends with the research image */
+.cs-dark-section:has(.cs-research-image) {
+  padding-bottom: 0;
+}
+
 /* Research section image */
 .cs-research-image {
   margin-top: 64px;
