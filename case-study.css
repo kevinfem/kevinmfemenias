@@ -223,6 +223,20 @@
   margin: 64px 0;
 }
 
+/* Case study inline image */
+.cs-case-image {
+  margin-top: 40px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.cs-case-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Key stats / highlights row */
 .cs-highlights {
   display: grid;
