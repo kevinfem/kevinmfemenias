@@ -273,37 +273,24 @@
   }
 }
 
-/* Key constraints — 2-col layout */
-.cs-constraints-layout {
+/* Key constraints — 2x2 grid */
+.cs-constraints-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-
-.cs-constraints-intro {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: sticky;
-  top: calc(var(--nav-h) + 32px);
-}
-
-.cs-constraints-list {
-  display: flex;
-  flex-direction: column;
+  margin-top: 8px;
 }
 
 .cs-constraint {
   display: grid;
   grid-template-columns: 32px 1fr;
   gap: 16px;
-  padding: 20px 0;
+  padding: 24px 24px 24px 0;
   border-top: 1px solid var(--color-border);
 }
 
-.cs-constraint:last-child {
-  border-bottom: 1px solid var(--color-border);
+.cs-constraint:nth-child(even) {
+  padding-left: 24px;
+  border-left: 1px solid var(--color-border);
 }
 
 .cs-constraint__num {
@@ -332,14 +319,14 @@
   line-height: 1.65;
 }
 
-@media (max-width: 768px) {
-  .cs-constraints-layout {
+@media (max-width: 600px) {
+  .cs-constraints-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
   }
 
-  .cs-constraints-intro {
-    position: static;
+  .cs-constraint:nth-child(even) {
+    padding-left: 0;
+    border-left: none;
   }
 }
 
