@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kevin M. Femenias — Senior UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&family=Manrope:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="nav__logo">Kevin M. Femenias</a>
+    <ul class="nav__links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="CV/Kevin M. Femenías_CV_2026.pdf" target="_blank" rel="noopener">CV</a></li>
+      <li><a href="mailto:hello@kevinmfemenias.com" class="nav__cta">Get in touch</a></li>
+    </ul>
+    <button class="nav__burger" aria-label="Toggle menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__mobile-menu">
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="CV/Kevin M. Femenías_CV_2026.pdf" target="_blank" rel="noopener">CV</a></li>
+      <li><a href="mailto:hello@kevinmfemenias.com">Get in touch</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero__content">
+        <div class="hero__text">
+          <div class="hero__currently">
+            <i data-lucide="building-2"></i>
+            Currently at <strong>Novacura</strong>
+          </div>
+          <div class="hero__headline">
+            <h1 class="hero__name">Hej 👋 I'm Kevin, a Senior UX Designer</h1>
+            <p class="hero__tagline">8 years in design, strategy-first mindset. I care about the full picture, from product vision down to the last&nbsp;pixel.</p>
+          </div>
+          <div class="hero__skills">
+            <span><i data-lucide="compass"></i>UX Strategy</span>
+            <span><i data-lucide="search"></i>UX Research</span>
+            <span><i data-lucide="pen-tool"></i>UI Design</span>
+            <span><i data-lucide="layers"></i>Design Systems</span>
+            <span><i data-lucide="mouse-pointer-2"></i>Prototyping</span>
+          </div>
+        </div>
+        <div class="hero__photo">
+          <img src="images/kevin.png" alt="Kevin M. Femenias" class="hero__photo-img" />
+          <div class="hero__photo-placeholder" aria-hidden="true">
+            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="80" r="36" fill="#c8c4be"/>
+              <path d="M36 180c0-35.346 28.654-64 64-64s64 28.654 64 64" fill="#c8c4be"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- WORK -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Work</h2>
+          <p class="section__subtitle">Selected case studies</p>
+        </div>
+
+        <div class="work__grid">
+
+          <a href="web-designer.html" class="case-study case-study--1">
+            <div class="case-study__preview">
+              <img src="images/web_designer_cover.png" alt="ERP App Designer project preview" class="case-study__img" />
+              <div class="case-study__preview-placeholder case-study__preview-placeholder--1" aria-hidden="true"></div>
+            </div>
+            <div class="case-study__body">
+              <h3 class="case-study__title">ERP App Designer</h3>
+              <p class="case-study__desc">Lead the design of Novacura's new ERP app web designer.</p>
+              <div class="case-study__meta">
+                <span class="case-study__company">Novacura</span>
+                <span class="case-study__year">Oct 2024 – Now</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="smartcraft.html" class="case-study case-study--2">
+            <div class="case-study__preview">
+              <img src="images/smartcraft-preview.png" alt="SmartCraft project preview" class="case-study__img" />
+              <div class="case-study__preview-placeholder case-study__preview-placeholder--2" aria-hidden="true"></div>
+            </div>
+            <div class="case-study__body">
+              <h3 class="case-study__title">Investor Relations Redesign</h3>
+              <p class="case-study__desc">Redesigning the investor relations experience for a SaaS company, bridging complex financial data with accessible, human-centred design.</p>
+              <div class="case-study__meta">
+                <span class="case-study__company">SmartCraft · Amply</span>
+                <span class="case-study__year">2024</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="case-study case-study--3">
+            <div class="case-study__preview">
+              <img src="images/project-3-preview.png" alt="Project Three preview" class="case-study__img" />
+              <div class="case-study__preview-placeholder case-study__preview-placeholder--3" aria-hidden="true"></div>
+            </div>
+            <div class="case-study__body">
+              <h3 class="case-study__title">Project Title Three</h3>
+              <p class="case-study__desc">A short description of the project and the problem you solved. Keep it to one or two sentences.</p>
+              <div class="case-study__meta">
+                <span class="case-study__company">Company Name</span>
+                <span class="case-study__year">2023</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="case-study case-study--4">
+            <div class="case-study__preview">
+              <img src="images/project-4-preview.png" alt="Project Four preview" class="case-study__img" />
+              <div class="case-study__preview-placeholder case-study__preview-placeholder--4" aria-hidden="true"></div>
+            </div>
+            <div class="case-study__body">
+              <h3 class="case-study__title">Project Title Four</h3>
+              <p class="case-study__desc">A short description of the project and the problem you solved. Keep it to one or two sentences.</p>
+              <div class="case-study__meta">
+                <span class="case-study__company">Company Name</span>
+                <span class="case-study__year">2023</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WRITING -->
+    <section class="section section--alt" id="writing">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Writing</h2>
+          <p class="section__subtitle">Thoughts on design, process, and craft</p>
+        </div>
+
+        <div class="writing__list">
+
+          <a href="#" class="writing__item">
+            <div class="writing__info">
+              <span class="writing__tag">UX Research</span>
+              <h3 class="writing__title">Article Title One</h3>
+              <p class="writing__excerpt">A brief summary of what this piece is about. One or two sentences to draw the reader in.</p>
+            </div>
+            <div class="writing__date">
+              <span>Mar 2025</span>
+              <span class="writing__arrow">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="writing__item">
+            <div class="writing__info">
+              <span class="writing__tag">Design Systems</span>
+              <h3 class="writing__title">Article Title Two</h3>
+              <p class="writing__excerpt">A brief summary of what this piece is about. One or two sentences to draw the reader in.</p>
+            </div>
+            <div class="writing__date">
+              <span>Jan 2025</span>
+              <span class="writing__arrow">→</span>
+            </div>
+          </a>
+
+          <a href="#" class="writing__item">
+            <div class="writing__info">
+              <span class="writing__tag">Strategy</span>
+              <h3 class="writing__title">Article Title Three</h3>
+              <p class="writing__excerpt">A brief summary of what this piece is about. One or two sentences to draw the reader in.</p>
+            </div>
+            <div class="writing__date">
+              <span>Nov 2024</span>
+              <span class="writing__arrow">→</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DARK CTA -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="cta-band">
+          <p class="cta-band__label">Open to opportunities in Copenhagen</p>
+          <h2 class="cta-band__heading">Let's build something<br>people actually love.</h2>
+          <a href="mailto:hello@kevinmfemenias.com" class="cta-band__btn">Get in touch →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about__grid">
+          <div class="about__text">
+            <h2 class="section__title">About</h2>
+            <p>I'm a Senior UX Designer based in Sweden, currently looking for new opportunities in Copenhagen. I work at the intersection of user research, strategy, and interface design — with a focus on making complex systems feel simple and human.</p>
+            <p>Over the years I've worked across industries including [industry], [industry], and [industry], helping teams move from ambiguity to clarity through structured design thinking and research.</p>
+            <p>When I'm not designing, you'll find me [personal detail — e.g. cycling around the city / reading about urban planning / etc.].</p>
+            <div class="about__links">
+              <a href="mailto:hello@kevinmfemenias.com">hello@kevinmfemenias.com</a>
+              <a href="#">LinkedIn</a>
+              <a href="#">Resume</a>
+            </div>
+          </div>
+          <div class="about__photo">
+            <div class="about__photo-placeholder">
+              <svg viewBox="0 0 300 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="300" height="380" fill="#ece9e4"/>
+                <circle cx="150" cy="140" r="58" fill="#d4d0cb"/>
+                <path d="M40 360c0-60.751 49.249-110 110-110s110 49.249 110 110" fill="#d4d0cb"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Kevin M. Femenias</p>
+      <div class="footer__links">
+        <a href="#">LinkedIn</a>
+        <a href="#">Resume</a>
+        <a href="mailto:hello@kevinmfemenias.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
