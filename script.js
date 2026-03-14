@@ -101,6 +101,21 @@ document.querySelectorAll('.section__header, .case-study, .writing__item, .about
   revealObserver.observe(el);
 });
 
+// Feature stage — image floats up into centre as section scrolls into view
+const featureStage = document.querySelector('.cs-feature-stage');
+if (featureStage) {
+  const featureImg = featureStage.querySelector('.cs-feature-stage__img');
+  const updateFeatureImg = () => {
+    const rect = featureStage.getBoundingClientRect();
+    const viewH = window.innerHeight;
+    const progress = Math.min(1, Math.max(0, (viewH - rect.top) / (viewH * 0.75)));
+    const ease = 1 - Math.pow(1 - progress, 3);
+    featureImg.style.transform = `translateY(${(1 - ease) * 48}px)`;
+  };
+  window.addEventListener('scroll', updateFeatureImg, { passive: true });
+  updateFeatureImg();
+}
+
 // Nav: transparent at top, frosted on scroll
 // Scroll indicator: fade out once past hero
 const nav = document.querySelector('.nav');

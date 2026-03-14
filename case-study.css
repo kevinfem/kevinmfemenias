@@ -434,6 +434,26 @@
   }
 }
 
+/* Feature stage — image on coloured background */
+.cs-feature-stage {
+  margin-top: 40px;
+  border-radius: 20px;
+  background: #dde4ed;
+  padding: 40px 40px 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.cs-feature-stage__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.14);
+  will-change: transform;
+}
+
 /* Case study inline image */
 .cs-case-image {
   margin-top: 40px;
