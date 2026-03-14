@@ -704,13 +704,14 @@
 
 /* Research section image */
 .cs-research-image {
-  margin-top: 64px;
-  border-radius: 16px;
+  margin-top: 48px;
+  border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  max-width: 850px;
+  max-width: 380px;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0.85;
 }
 
 .cs-research-image img {
