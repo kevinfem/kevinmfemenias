@@ -439,14 +439,14 @@
   margin-top: 40px;
   border-radius: 20px;
   background: #dde4ed;
-  padding: 40px 40px 0;
+  padding: 48px 72px 0;
   overflow: hidden;
   display: flex;
   justify-content: center;
 }
 
 .cs-feature-stage__img {
-  width: 100%;
+  width: 85%;
   height: auto;
   display: block;
   border-radius: 10px 10px 0 0;

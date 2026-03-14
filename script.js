@@ -110,7 +110,7 @@ if (featureStage) {
     const viewH = window.innerHeight;
     const progress = Math.min(1, Math.max(0, (viewH - rect.top) / (viewH * 0.75)));
     const ease = 1 - Math.pow(1 - progress, 3);
-    featureImg.style.transform = `translateY(${(1 - ease) * 48}px)`;
+    featureImg.style.transform = `translateY(${(1 - ease) * 90}px)`;
   };
   window.addEventListener('scroll', updateFeatureImg, { passive: true });
   updateFeatureImg();
