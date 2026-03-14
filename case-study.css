@@ -341,6 +341,60 @@
   color: var(--color-ink);
 }
 
+/* Learnings — Apple-style card grid */
+.cs-learnings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.cs-learning {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 32px 28px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  transition: box-shadow 0.2s ease;
+}
+
+.cs-learning:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+}
+
+.cs-learning__num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--color-ink-40);
+  line-height: 1;
+}
+
+.cs-learning__title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.cs-learning__text {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-ink-70);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .cs-learnings {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Design decisions — number anchor + content layout */
 .cs-decisions {
   display: flex;
