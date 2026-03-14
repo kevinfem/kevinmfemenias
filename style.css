@@ -431,8 +431,8 @@ img, svg {
 }
 
 .hero__photo-img {
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 140px;
   border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
   animation: fadeUp 0.8s ease forwards, blobMorph 8s ease-in-out infinite;
   animation-delay: 0.05s, 1s;
@@ -447,8 +447,8 @@ img, svg {
 }
 
 .hero__photo-placeholder {
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 140px;
   border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
   animation: blobMorph 8s ease-in-out infinite;
   animation-delay: 1s;
@@ -461,7 +461,7 @@ img, svg {
 }
 
 .hero__photo-placeholder svg {
-  width: 160px;
+  width: 112px;
 }
 
 /* Progressive blur at bottom of hero */
