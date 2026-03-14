@@ -33,7 +33,7 @@
    CASE STUDY — Hero
    ============================================ */
 .cs-hero {
-  padding: calc(var(--nav-h) + 72px) 0 80px;
+  padding: calc(var(--nav-h) + 32px) 0 80px;
 }
 
 .cs-hero__header {
