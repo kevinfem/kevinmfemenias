@@ -223,40 +223,56 @@
   margin: 64px 0;
 }
 
-/* Key constraints — 2x2 card grid */
-.cs-constraints {
+/* Key constraints — 2-col layout */
+.cs-constraints-layout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 16px;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.cs-constraints-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
+}
+
+.cs-constraints-list {
+  display: flex;
+  flex-direction: column;
 }
 
 .cs-constraint {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 28px 24px;
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: 16px;
-  border-top: 2px solid var(--color-ink);
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.cs-constraint:last-child {
+  border-bottom: 1px solid var(--color-border);
 }
 
 .cs-constraint__num {
   font-family: var(--font-accent);
   font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--color-ink-40);
+  padding-top: 3px;
 }
 
 .cs-constraint__title {
   font-family: var(--font-display);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.25;
   color: var(--color-ink);
+  margin-bottom: 6px;
 }
 
 .cs-constraint__text {
@@ -266,9 +282,14 @@
   line-height: 1.65;
 }
 
-@media (max-width: 600px) {
-  .cs-constraints {
+@media (max-width: 768px) {
+  .cs-constraints-layout {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .cs-constraints-intro {
+    position: static;
   }
 }
 
