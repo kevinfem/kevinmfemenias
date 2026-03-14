@@ -339,73 +339,57 @@
   }
 }
 
-/* Final design showcase — alternating full-width rows */
+/* Final design — bento grid */
 .cs-showcase {
   padding: 80px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
 }
 
 .cs-showcase > .container {
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
-.cs-showcase__item {
+.cs-grid {
   display: grid;
-  grid-template-columns: 3fr 2fr;
-  align-items: center;
-  gap: 0;
-  border-top: 1px solid var(--color-border);
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  padding: 0 clamp(20px, 2vw, 80px);
 }
 
-.cs-showcase__item--reverse {
-  grid-template-columns: 2fr 3fr;
-}
-
-.cs-showcase__item--reverse .cs-showcase__image {
-  order: 2;
-}
-
-.cs-showcase__item--reverse .cs-showcase__text {
-  order: 1;
-}
-
-.cs-showcase__image {
+.cs-grid__item {
   overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
 }
 
-.cs-showcase__image img {
+.cs-grid__item--wide:nth-child(1) {
+  grid-column: 1;
+}
+
+.cs-grid__item:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.cs-grid__item:nth-child(3) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.cs-grid__item--wide:nth-child(4) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.cs-grid__item img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-.cs-showcase__text {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 48px clamp(32px, 4vw, 72px);
-}
-
-.cs-showcase__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2vw, 1.625rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
-  color: var(--color-ink);
-}
-
-.cs-showcase__desc {
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  color: var(--color-ink-70);
-  line-height: 1.7;
-}
-
 /* Placeholder — removed once real images are added */
-.cs-showcase__placeholder {
+.cs-grid__placeholder {
   width: 100%;
   aspect-ratio: 16 / 9;
   background: var(--color-bg-card);
@@ -419,18 +403,14 @@
 }
 
 @media (max-width: 768px) {
-  .cs-showcase__item,
-  .cs-showcase__item--reverse {
+  .cs-grid {
     grid-template-columns: 1fr;
   }
 
-  .cs-showcase__item--reverse .cs-showcase__image,
-  .cs-showcase__item--reverse .cs-showcase__text {
-    order: unset;
-  }
-
-  .cs-showcase__text {
-    padding: 32px clamp(20px, 2vw, 80px);
+  .cs-grid__item,
+  .cs-grid__item--wide {
+    grid-column: 1 !important;
+    grid-row: auto !important;
   }
 }
 
