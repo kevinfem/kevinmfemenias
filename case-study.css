@@ -339,52 +339,77 @@
   }
 }
 
-/* Final design showcase */
-.cs-final-design {
+/* Final design showcase — alternating full-width rows */
+.cs-showcase {
+  padding: 80px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cs-showcase > .container {
+  margin-bottom: 48px;
+}
+
+.cs-showcase__item {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: center;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.cs-showcase__item--reverse {
+  grid-template-columns: 2fr 3fr;
+}
+
+.cs-showcase__item--reverse .cs-showcase__image {
+  order: 2;
+}
+
+.cs-showcase__item--reverse .cs-showcase__text {
+  order: 1;
+}
+
+.cs-showcase__image {
+  overflow: hidden;
+}
+
+.cs-showcase__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-showcase__text {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 80px;
+  padding: 48px clamp(32px, 4vw, 72px);
 }
 
-.cs-final-design > .cs-block__label {
-  margin-bottom: 4px;
+.cs-showcase__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--color-ink);
 }
 
-.cs-final-design__hero {
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-}
-
-.cs-final-design__hero img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.cs-final-design__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.cs-final-design__grid img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 16px;
-  border: 1px solid var(--color-border);
+.cs-showcase__desc {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-ink-70);
+  line-height: 1.7;
 }
 
 /* Placeholder — removed once real images are added */
-.cs-final-design__placeholder {
+.cs-showcase__placeholder {
   width: 100%;
   aspect-ratio: 16 / 9;
   background: var(--color-bg-card);
-  border: 1px dashed rgba(0, 0, 0, 0.15);
-  border-radius: 16px;
+  border: 1px dashed rgba(0, 0, 0, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -393,9 +418,19 @@
   color: var(--color-ink-40);
 }
 
-@media (max-width: 600px) {
-  .cs-final-design__grid {
+@media (max-width: 768px) {
+  .cs-showcase__item,
+  .cs-showcase__item--reverse {
     grid-template-columns: 1fr;
+  }
+
+  .cs-showcase__item--reverse .cs-showcase__image,
+  .cs-showcase__item--reverse .cs-showcase__text {
+    order: unset;
+  }
+
+  .cs-showcase__text {
+    padding: 32px clamp(20px, 2vw, 80px);
   }
 }
 
