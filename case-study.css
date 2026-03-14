@@ -223,6 +223,55 @@
   margin: 64px 0;
 }
 
+/* Key constraints — 2x2 card grid */
+.cs-constraints {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cs-constraint {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 24px;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  border-top: 2px solid var(--color-ink);
+}
+
+.cs-constraint__num {
+  font-family: var(--font-accent);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-40);
+}
+
+.cs-constraint__title {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+
+.cs-constraint__text {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-ink-70);
+  line-height: 1.65;
+}
+
+@media (max-width: 600px) {
+  .cs-constraints {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Case study inline image */
 .cs-case-image {
   margin-top: 40px;
