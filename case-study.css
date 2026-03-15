@@ -360,6 +360,16 @@
   overflow: hidden;
   border-radius: 14px;
   border: 1px solid var(--color-border);
+  opacity: 0;
+  transform: translateY(28px) scale(0.97);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cs-grid__item.in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* Row 1: designer_main full width */

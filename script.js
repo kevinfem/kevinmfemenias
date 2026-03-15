@@ -101,6 +101,23 @@ document.querySelectorAll('.section__header, .case-study, .writing__item, .about
   revealObserver.observe(el);
 });
 
+// Final design grid — staggered fade-up on scroll
+const gridItems = document.querySelectorAll('.cs-grid__item');
+if (gridItems.length) {
+  const gridObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(gridItems).indexOf(entry.target);
+        entry.target.style.transitionDelay = `${idx * 0.08}s`;
+        entry.target.classList.add('in-view');
+        gridObserver.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '-40px 0px', threshold: 0.08 });
+
+  gridItems.forEach(item => gridObserver.observe(item));
+}
+
 // Feature stage — image floats up into centre as section scrolls into view
 const featureStage = document.querySelector('.cs-feature-stage');
 if (featureStage) {
