@@ -391,6 +391,32 @@
   display: block;
 }
 
+/* Full-width 5th cell spanning all columns */
+.cs-grid__item--full {
+  grid-column: 1 / -1;
+  grid-row: auto;
+}
+
+/* Stage treatment — grey-blue background with centred image */
+.cs-grid__item--stage {
+  background: #dde4ed;
+  border: none;
+  border-radius: 14px;
+  padding: 48px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cs-grid__stage-img {
+  width: auto;
+  height: auto;
+  max-width: 420px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 56px rgba(0, 0, 0, 0.14);
+}
+
 /* Placeholder — removed once real images are added */
 .cs-grid__placeholder {
   width: 100%;
