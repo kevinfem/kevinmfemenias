@@ -111,6 +111,22 @@
   color: transparent;
 }
 
+.cs-hero__cover--stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cs-hero__cover--stage .cs-hero__img {
+  position: relative;
+  inset: auto;
+  width: auto;
+  height: 75%;
+  max-width: 80%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
 .cs-hero__cover-placeholder {
   position: absolute;
   inset: 0;
