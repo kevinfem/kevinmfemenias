@@ -428,7 +428,7 @@
   align-items: center;
 }
 
-.cs-grid__stage-img {
+.cs-grid__item--stage .cs-grid__stage-img {
   width: auto;
   height: auto;
   max-width: 420px;
@@ -634,9 +634,6 @@
   transition: box-shadow 0.2s ease;
 }
 
-.cs-learning:hover {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
-}
 
 .cs-learning__num {
   font-family: var(--font-display);
