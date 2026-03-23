@@ -269,6 +269,11 @@
   gap: 16px;
 }
 
+.cs-img-mosaic--reversed {
+  grid-template-columns: 1fr 58%;
+  margin-top: 12px;
+}
+
 .cs-img-mosaic__col--offset {
   padding-top: 72px;
 }
