@@ -823,6 +823,132 @@ img, svg {
   width: 100%;
 }
 
+/* ============================================
+   ABOUT — Rethought
+   ============================================ */
+.about-rethink {
+  background: var(--color-bg-card);
+  overflow: hidden;
+}
+
+.about-rethink__inner {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  min-height: 660px;
+}
+
+.about-rethink__photo {
+  position: relative;
+  background: #dedad4;
+  overflow: hidden;
+}
+
+.about-rethink__photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.about-rethink__photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.about-rethink__photo-placeholder svg {
+  width: 100%;
+}
+
+.about-rethink__photo-img ~ .about-rethink__photo-placeholder {
+  display: none;
+}
+
+.about-rethink__content {
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-rethink__label {
+  display: block;
+  font-family: var(--font-accent);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-40);
+  margin-bottom: 20px;
+}
+
+.about-rethink__headline {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--color-ink);
+  margin-bottom: 36px;
+}
+
+.about-rethink__bio p {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-ink-70);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.about-rethink__bio p:last-child {
+  margin-bottom: 0;
+}
+
+.about-rethink__links {
+  display: flex;
+  gap: 24px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.about-rethink__links a {
+  font-family: var(--font-accent);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity 0.2s ease;
+}
+
+.about-rethink__links a:hover {
+  opacity: 0.45;
+}
+
+@media (max-width: 900px) {
+  .about-rethink__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .about-rethink__photo {
+    height: 360px;
+    position: relative;
+  }
+
+  .about-rethink__content {
+    padding: 56px 32px;
+  }
+
+  .about-rethink__headline {
+    font-size: 1.75rem;
+  }
+}
+
 
 /* ============================================
    FOOTER
