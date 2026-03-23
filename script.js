@@ -133,6 +133,21 @@ if (featureStage) {
   updateFeatureImg();
 }
 
+// Image showcase mosaic — staggered fade-up on scroll
+const showcaseImgs = document.querySelectorAll('.cs-img-reveal');
+if (showcaseImgs.length) {
+  const showcaseObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        showcaseObserver.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '-60px 0px', threshold: 0.06 });
+
+  showcaseImgs.forEach(el => showcaseObserver.observe(el));
+}
+
 // Nav: transparent at top, frosted on scroll
 // Scroll indicator: fade out once past hero
 const nav = document.querySelector('.nav');
