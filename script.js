@@ -158,3 +158,98 @@ window.addEventListener('scroll', () => {
     scrollIndicator.style.opacity = Math.max(0, 1 - window.scrollY / 120);
   }
 }, { passive: true });
+
+// ---- Polaroid: drag-to-flip + 3D tilt on hover ----
+(function () {
+  const polaroid = document.getElementById('about-polaroid');
+  if (!polaroid) return;
+  const inner = polaroid.querySelector('.polaroid__inner');
+
+  let isFlipped = false;   // committed face (0° = front, 180° = back)
+  let isDragging = false;
+  let dragStartX = 0;
+  let hasDragged = false;
+
+  // Commit to a face with optional animation
+  function snapTo(flipped) {
+    inner.style.transition = '';
+    isFlipped = flipped;
+    inner.style.transform = `rotateY(${flipped ? 180 : 0}deg)`;
+    polaroid.classList.toggle('is-flipped', flipped);
+    polaroid.style.cursor = 'grab';
+  }
+
+  // ── Drag start ──────────────────────────────────
+  function onDragStart(clientX) {
+    isDragging = true;
+    hasDragged = false;
+    dragStartX = clientX;
+    inner.style.transition = 'none'; // live feedback
+    polaroid.style.cursor = 'grabbing';
+  }
+
+  polaroid.addEventListener('mousedown', (e) => {
+    onDragStart(e.clientX);
+    e.preventDefault(); // prevent text selection
+  });
+
+  polaroid.addEventListener('touchstart', (e) => {
+    onDragStart(e.touches[0].clientX);
+  }, { passive: true });
+
+  // ── Drag move ───────────────────────────────────
+  function onDragMove(clientX) {
+    if (!isDragging) return;
+    const delta = clientX - dragStartX;
+    if (Math.abs(delta) > 4) hasDragged = true;
+    // Clamp so card can't spin more than one full face in either direction
+    const base = isFlipped ? 180 : 0;
+    const angle = Math.max(base - 90, Math.min(base + 180, base + delta * 0.9));
+    inner.style.transform = `rotateY(${angle}deg)`;
+  }
+
+  window.addEventListener('mousemove', (e) => onDragMove(e.clientX));
+  window.addEventListener('touchmove', (e) => onDragMove(e.touches[0].clientX), { passive: true });
+
+  // ── Drag end ────────────────────────────────────
+  function onDragEnd(clientX) {
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (!hasDragged) {
+      // Tap / click: just toggle
+      snapTo(!isFlipped);
+      return;
+    }
+
+    // Snap to nearest face
+    const delta = clientX - dragStartX;
+    const base = isFlipped ? 180 : 0;
+    const angle = base + delta * 0.9;
+    snapTo(Math.round(angle / 180) % 2 !== 0); // odd multiples of 180 = flipped
+  }
+
+  window.addEventListener('mouseup', (e) => onDragEnd(e.clientX));
+  window.addEventListener('touchend', (e) => onDragEnd(e.changedTouches[0].clientX));
+
+  // ── Hover tilt (front face only, not while dragging) ──
+  polaroid.addEventListener('mousemove', (e) => {
+    if (isDragging || isFlipped) return;
+    const rect = polaroid.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width  - 0.5;
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    polaroid.style.transform = `rotateX(${y * -12}deg) rotateY(${x * 12}deg) scale(1.04)`;
+  });
+
+  polaroid.addEventListener('mouseleave', () => {
+    if (!isDragging) polaroid.style.transform = '';
+  });
+
+  // ── Keyboard ────────────────────────────────────
+  polaroid.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      snapTo(!isFlipped);
+    }
+  });
+})();

@@ -200,13 +200,22 @@
       <div class="about-rethink__inner">
 
         <div class="about-rethink__photo">
-          <img src="images/kevin.png" alt="Kevin M. Femenias" class="about-rethink__photo-img" />
-          <div class="about-rethink__photo-placeholder" aria-hidden="true">
-            <svg viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="300" height="420" fill="#e0ddd8"/>
-              <circle cx="150" cy="160" r="72" fill="#ccc9c3"/>
-              <path d="M0 420c0-82.843 67.157-150 150-150s150 67.157 150 150" fill="#ccc9c3"/>
-            </svg>
+          <div class="polaroid" id="about-polaroid" role="button" tabindex="0" aria-label="Flip photo">
+            <div class="polaroid__inner">
+
+              <div class="polaroid__front">
+                <div class="polaroid__image-wrap">
+                  <img src="images/kevin.png" alt="Kevin M. Femenias" class="about-rethink__photo-img" />
+                </div>
+                <div class="polaroid__bottom-strip"></div>
+              </div>
+
+              <div class="polaroid__back">
+                <span class="polaroid__back-city">Italy</span>
+                <span class="polaroid__back-year">2025</span>
+              </div>
+
+            </div>
           </div>
         </div>
 
