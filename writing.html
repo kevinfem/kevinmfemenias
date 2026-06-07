@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Writing — Kevin M. Femenias</title>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="551df996-571a-4604-bba3-4da5f7ae1863"></script>
+  <link rel="icon" type="image/png" href="images/favicon_dark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&family=Manrope:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Kevin M. Femenias</a>
+    <ul class="nav__links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="writing.html" class="nav__active">Writing</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="CV/Kevin M. Femenías_CV_2026.pdf" target="_blank" rel="noopener">CV</a></li>
+      <li><a href="mailto:kevin.m.femenias@gmail.com" class="nav__cta">Get in touch</a></li>
+    </ul>
+    <button class="nav__burger" aria-label="Toggle menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav__mobile-menu">
+    <ul>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="writing.html">Writing</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="CV/Kevin M. Femenías_CV_2026.pdf" target="_blank" rel="noopener">CV</a></li>
+      <li><a href="mailto:kevin.m.femenias@gmail.com">Get in touch</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- MASTHEAD -->
+    <div class="blog-column">
+      <header class="blog-hero">
+        <span class="blog-hero__byline">Kevin M. Femenias</span>
+        <h1 class="blog-hero__title">Thoughts on design,<br>process, and craft.</h1>
+        <p class="blog-hero__desc">Essays on UX strategy, design systems, research, and the practice of building products people actually love.</p>
+        <hr class="blog-hero__rule" />
+      </header>
+    </div>
+
+    <!-- POST LIST — rendered dynamically from posts.js -->
+    <div class="blog-column">
+      <div class="post-list" id="post-list"></div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Kevin M. Femenias</p>
+      <div class="footer__links">
+        <a href="https://www.linkedin.com/in/kevin-m-femen%C3%ADas-4a117b157/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="CV/Kevin M. Femenías_CV_2026.pdf" target="_blank" rel="noopener">Resume</a>
+        <a href="mailto:kevin.m.femenias@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="posts.js"></script>
+  <script src="script.js"></script>
+  <script>
+    (function () {
+      var list = document.getElementById('post-list');
+      if (!list || typeof POSTS === 'undefined') return;
+
+      var published = POSTS.filter(function (p) { return !p.draft; });
+
+      list.innerHTML = published.map(function (post, idx) {
+        var tagsHtml = post.tags
+          .map(function (t) { return '<span class="post-card__tag">' + t + '</span>'; })
+          .join('');
+
+        var thumbHtml = post.coverImage
+          ? '<div class="post-card__thumb"><img src="' + post.coverImage + '" alt="' + post.coverAlt + '" class="post-card__thumb-img" /></div>'
+          : '<div class="post-card__thumb"><div class="post-card__thumb-placeholder post-card__thumb-placeholder--' + (post.placeholderIndex || 1) + '" aria-hidden="true"></div></div>';
+
+        var delayAttr = idx > 0 ? ' data-delay="' + Math.min(idx, 8) + '"' : '';
+
+        return (
+          '<a href="posts/' + post.slug + '.html" class="post-card"' + delayAttr + '>' +
+            thumbHtml +
+            '<div class="post-card__meta">' +
+              '<div class="post-card__tags">' + tagsHtml + '</div>' +
+              '<time class="post-card__date" datetime="' + post.date + '">' + post.dateDisplay + '</time>' +
+            '</div>' +
+            '<h2 class="post-card__title">' + post.title + '</h2>' +
+            '<p class="post-card__subtitle">' + post.subtitle + '</p>' +
+          '</a>'
+        );
+      }).join('');
+
+      // Attach placeholder-hiders for any real cover images
+      list.querySelectorAll('.post-card__thumb-img').forEach(function (img) {
+        var placeholder = img.nextElementSibling;
+        if (!placeholder) return;
+        if (img.complete && img.naturalWidth > 0) placeholder.style.display = 'none';
+        else img.addEventListener('load', function () { placeholder.style.display = 'none'; });
+      });
+
+      // Animate the newly created cards
+      if (typeof initReveal === 'function') initReveal();
+    })();
+  </script>
+</body>
+</html>
