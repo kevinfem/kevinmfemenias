@@ -1,6 +1,72 @@
 // Initialise Lucide icons
 document.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
 
+// Experience card — dynamic years + timeline fill
+(function () {
+  const numEl = document.getElementById('exp-years');
+  const fill  = document.querySelector('.hero-exp__fill');
+  if (!numEl) return;
+
+  const years = new Date().getFullYear() - 2018;
+  numEl.textContent = years;
+
+  if (fill) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        fill.style.width = '100%';
+        observer.disconnect();
+      });
+    }, { threshold: 0.4 });
+    observer.observe(numEl.closest('.hero-exp'));
+  }
+})();
+
+// About modal
+(function () {
+  const card     = document.getElementById('about');
+  const modal    = document.getElementById('about-modal');
+  const backdrop = document.getElementById('about-modal-backdrop');
+  const closeBtn = document.getElementById('about-modal-close');
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+    lucide.createIcons(); // re-run so the X icon inside the modal renders
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    if (card) card.focus();
+  }
+
+  if (card) {
+    card.addEventListener('click', openModal);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); }
+    });
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+})();
+
+// CTA card — torch / spotlight effect tracks cursor
+const ctaCard = document.querySelector('.cta-card');
+if (ctaCard) {
+  ctaCard.addEventListener('mousemove', (e) => {
+    const rect = ctaCard.getBoundingClientRect();
+    ctaCard.style.setProperty('--x', ((e.clientX - rect.left) / rect.width  * 100) + '%');
+    ctaCard.style.setProperty('--y', ((e.clientY - rect.top)  / rect.height * 100) + '%');
+  });
+}
+
 // Hero photo — show image and hide placeholder once loaded
 const heroImg = document.querySelector('.hero__photo-img');
 const heroPlaceholder = document.querySelector('.hero__photo-placeholder');
@@ -15,8 +81,8 @@ if (heroImg) {
   else heroImg.addEventListener('load', showPhoto);
 }
 
-// Hide placeholder when real image loads (card previews + case study cover)
-document.querySelectorAll('.case-study__img, .cs-hero__img').forEach(img => {
+// Hide placeholder when real image loads (card previews, post cards, case study cover)
+document.querySelectorAll('.case-study__img, .post-card__thumb-img, .cs-hero__img').forEach(img => {
   const placeholder = img.nextElementSibling;
   if (!placeholder) return;
   if (img.complete && img.naturalWidth > 0) {
@@ -88,18 +154,30 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: '-80px 0px', threshold: 0.1 });
 
-document.querySelectorAll('.section__header, .case-study, .writing__item, .about__content').forEach((el) => {
-  if (el.classList.contains('case-study') || el.classList.contains('writing__item')) {
-    const siblings = el.parentElement.querySelectorAll(':scope > ' + el.tagName + ', :scope > a');
-    const idx = Array.from(siblings).indexOf(el);
-    if (idx > 0) el.dataset.delay = idx;
-  }
-  // Already in viewport on load — skip animation entirely
-  const rect = el.getBoundingClientRect();
-  if (rect.top < window.innerHeight && rect.bottom > 0) return;
-  el.classList.add('reveal');
-  revealObserver.observe(el);
-});
+// initReveal() is called once on load for static elements, and again after
+// dynamic card injection on writing.html. The skip guard prevents re-processing.
+function initReveal() {
+  document.querySelectorAll('.section__header, .case-study, .post-card, .writing__item, .about__content').forEach((el) => {
+    // Skip elements already processed by a previous initReveal() call
+    if (el.classList.contains('reveal') || el.classList.contains('visible')) return;
+
+    if (el.classList.contains('case-study') || el.classList.contains('post-card') || el.classList.contains('writing__item')) {
+      const siblings = el.parentElement.querySelectorAll(':scope > ' + el.tagName + ', :scope > a');
+      const idx = Array.from(siblings).indexOf(el);
+      if (idx > 0) el.dataset.delay = Math.min(idx, 8);
+    }
+
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('visible')));
+      return;
+    }
+    el.classList.add('reveal');
+    revealObserver.observe(el);
+  });
+}
+
+initReveal();
 
 // Final design grid — staggered fade-up on scroll
 const gridItems = document.querySelectorAll('.cs-grid__item');
@@ -147,6 +225,46 @@ if (showcaseImgs.length) {
 
   showcaseImgs.forEach(el => showcaseObserver.observe(el));
 }
+
+// Cursor parallax — subtle floating depth effect on home page elements
+(function () {
+  if (!document.querySelector('.home-layout')) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  const layers = [
+    { selector: '.hero__headline',  depth: 0.008 },
+    { selector: '.hero__tagline',   depth: 0.005 },
+    { selector: '.hero__cta-btn',   depth: 0.010 },
+    { selector: '.hero-skills',     depth: 0.004 },
+    { selector: '.hero-exp',        depth: 0.005 },
+    { selector: '.bento-about',     depth: 0.005 },
+    { selector: '.cta-card',        depth: 0.006 },
+    { selector: '.work__grid',      depth: 0.003 },
+  ];
+
+  const items = layers
+    .map(({ selector, depth }) => ({ el: document.querySelector(selector), depth }))
+    .filter(({ el }) => el);
+
+  let mx = 0, my = 0, cx = 0, cy = 0, raf = null;
+
+  window.addEventListener('mousemove', e => {
+    mx = e.clientX - window.innerWidth  / 2;
+    my = e.clientY - window.innerHeight / 2;
+    if (!raf) raf = requestAnimationFrame(tick);
+  }, { passive: true });
+
+  function tick() {
+    cx += (mx - cx) * 0.07;
+    cy += (my - cy) * 0.07;
+    items.forEach(({ el, depth }) => {
+      el.style.transform = `translate(${(cx * depth).toFixed(2)}px, ${(cy * depth).toFixed(2)}px)`;
+    });
+    raf = (Math.abs(mx - cx) > 0.05 || Math.abs(my - cy) > 0.05)
+      ? requestAnimationFrame(tick)
+      : null;
+  }
+})();
 
 // Nav: transparent at top, frosted on scroll
 // Scroll indicator: fade out once past hero

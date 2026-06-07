@@ -1,0 +1,273 @@
+/* ============================================
+   POST PAGE
+   Styles for individual blog post pages (posts/*.html).
+   Loads after style.css — inherits all CSS custom properties.
+   ============================================ */
+
+
+/* ---- Back link ---- */
+.blog-post__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-ink-70);
+  margin-top: calc(var(--nav-h) + 48px);
+  margin-bottom: 48px;
+  transition: color var(--transition), gap var(--transition);
+}
+
+.blog-post__back:hover {
+  color: var(--color-ink);
+  gap: 11px;
+}
+
+.blog-post__back i {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.blog-post__back:hover i {
+  transform: translateX(-3px);
+}
+
+.blog-post__back--footer {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+/* ---- Post header ---- */
+.blog-post__header {
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.65s ease forwards;
+  animation-delay: 0.1s;
+}
+
+.blog-post__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+/* Tag pills: reuses .post-card__tag from style.css — no duplication needed */
+
+.blog-post__date {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  color: var(--color-ink-40);
+  margin-left: 4px;
+}
+
+.blog-post__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.blog-post__lede {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: var(--color-ink-70);
+  line-height: 1.7;
+}
+
+
+/* ---- Cover image ---- */
+.blog-post__cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-card);
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.blog-post__cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  color: transparent;
+}
+
+/* Gradient placeholder — add post-card__thumb-placeholder--1 through --4 classes
+   from style.css directly on this element, or set a custom inline background. */
+.blog-post__cover-placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+
+/* ---- Article body — prose typography ---- */
+.blog-post__body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-ink);
+  padding-bottom: 64px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.blog-post__body p {
+  margin-bottom: 1.5em;
+}
+
+.blog-post__body p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-post__body h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
+  color: var(--color-ink);
+}
+
+.blog-post__body h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  color: var(--color-ink);
+}
+
+.blog-post__body blockquote {
+  margin: 2em 0;
+  padding: 20px 24px;
+  border-left: 3px solid var(--color-ink);
+  background: var(--color-bg-card);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-family: var(--font-accent);
+  font-size: 1.0625rem;
+  font-style: italic;
+  color: var(--color-ink-70);
+  line-height: 1.7;
+}
+
+.blog-post__body ul,
+.blog-post__body ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.blog-post__body li {
+  color: var(--color-ink-70);
+  line-height: 1.75;
+}
+
+.blog-post__body strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.blog-post__body em {
+  font-style: italic;
+}
+
+.blog-post__body hr {
+  border: none;
+  height: 1px;
+  background: var(--color-border);
+  margin: 3em 0;
+}
+
+.blog-post__body img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin: 1.5em 0;
+  display: block;
+}
+
+.blog-post__body a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--transition);
+}
+
+.blog-post__body a:hover {
+  text-decoration-color: var(--color-ink);
+}
+
+
+/* ---- Figure / caption ---- */
+.blog-post__figure {
+  margin: 2em 0;
+}
+
+.blog-post__figure img {
+  margin: 0;
+}
+
+.blog-post__figure figcaption {
+  font-family: var(--font-accent);
+  font-size: 0.8125rem;
+  color: var(--color-ink-40);
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+/* ---- Post footer (back link) ---- */
+.blog-post__footer {
+  padding: 40px 0 80px;
+  border-top: 1px solid var(--color-border);
+}
+
+
+/* ---- Mobile ---- */
+@media (max-width: 768px) {
+  .blog-post__back {
+    margin-top: calc(var(--nav-h) + 32px);
+    margin-bottom: 32px;
+  }
+
+  .blog-post__title {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .blog-post__lede {
+    font-size: 1rem;
+  }
+
+  .blog-post__cover {
+    margin-bottom: 36px;
+  }
+
+  .blog-post__body {
+    font-size: 1rem;
+    padding-bottom: 48px;
+  }
+
+  .blog-post__footer {
+    padding: 32px 0 60px;
+  }
+}

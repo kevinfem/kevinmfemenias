@@ -19,7 +19,6 @@
     <a href="index.html" class="nav__logo">Kevin M. Femenias</a>
     <ul class="nav__links">
       <li><a href="#work">Work</a></li>
-      <!-- <li><a href="#writing">Writing</a></li> -->
       <li><a href="#about">About</a></li>
       <li><a href="CV/Kevin M. Femenías_CV_2026.pdf" target="_blank" rel="noopener">CV</a></li>
       <li><a href="mailto:kevin.m.femenias@gmail.com" class="nav__cta">Get in touch</a></li>
@@ -32,7 +31,6 @@
   <div class="nav__mobile-menu">
     <ul>
       <li><a href="#work">Work</a></li>
-      <!-- <li><a href="#writing">Writing</a></li> -->
       <li><a href="#about">About</a></li>
       <li><a href="CV/Kevin M. Femenías_CV_2026.pdf" target="_blank" rel="noopener">CV</a></li>
       <li><a href="mailto:kevin.m.femenias@gmail.com">Get in touch</a></li>
@@ -41,51 +39,78 @@
 
   <main>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="hero__content">
-        <div class="hero__text">
-          <div class="hero__currently">
-            <i data-lucide="building-2"></i>
-            Currently at <strong>Novacura</strong>
-          </div>
-          <div class="hero__headline">
-            <h1 class="hero__name">Hej 👋 I'm Kevin, a Senior UX Designer</h1>
-            <p class="hero__tagline">8 years in design, strategy-first mindset. I care about the full picture, from product vision down to the last&nbsp;pixel.</p>
-          </div>
-          <div class="hero__skills">
-            <span><i data-lucide="compass"></i>UX Strategy<span class="tag-tip">Principal element in the way I approach design. I make sure strategy is at the centre of every project.</span></span>
-            <span><i data-lucide="search"></i>UX Research<span class="tag-tip">I validate ideas through interviews, usability testing, and behavioural analysis. Evidence, not assumptions, drives my decisions.</span></span>
-            <span><i data-lucide="pen-tool"></i>UI Design<span class="tag-tip">Crafting interfaces that are visually refined and deeply functional — where aesthetics and usability reinforce each other.</span></span>
-            <span><i data-lucide="layers"></i>Design Systems<span class="tag-tip">Building scalable component libraries that keep teams aligned and products consistent, from design tokens to interaction patterns.</span></span>
-            <span><i data-lucide="mouse-pointer-2"></i>Prototyping<span class="tag-tip">From quick wireframes to high-fidelity interactions, I prototype early and often to test ideas before committing to them.</span></span>
+    <!-- HOME LAYOUT -->
+    <div class="home-layout">
+
+      <!-- LEFT: Hero -->
+      <div class="home-layout__hero" id="home">
+        <div class="hero__currently">
+          <i data-lucide="building-2"></i>
+          Currently at <strong>Novacura</strong>
+        </div>
+        <div class="hero__headline">
+          <h1 class="hero__name">
+            <span class="hero__name-intro">Hej, I'm Kevin.</span>
+            I design impactful tools for humans.
+          </h1>
+          <p class="hero__tagline">Elevating the way people experience technology — from product strategy to last&nbsp;pixel.</p>
+        </div>
+        <a href="mailto:kevin.m.femenias@gmail.com" class="hero__cta-btn">Get in touch →</a>
+
+        <!-- Skills -->
+        <div class="hero-skills">
+          <p class="hero-skills__label">What I do</p>
+          <div class="hero-skills__tags">
+            <span>UX Strategy</span>
+            <span>UX Research</span>
+            <span>UI Design</span>
+            <span>Design Systems</span>
+            <span>Prototyping</span>
           </div>
         </div>
-        <div class="hero__photo">
-          <img src="images/kevin.png" alt="Kevin M. Femenias" class="hero__photo-img" />
-          <div class="hero__photo-placeholder" aria-hidden="true">
-            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="100" cy="80" r="36" fill="#c8c4be"/>
-              <path d="M36 180c0-35.346 28.654-64 64-64s64 28.654 64 64" fill="#c8c4be"/>
-            </svg>
+
+        <!-- Experience -->
+        <div class="hero-exp">
+          <p class="bento-card__label">Experience</p>
+          <div class="hero-exp__main">
+            <span class="hero-exp__num" id="exp-years">0</span>
+            <span class="hero-exp__unit">yrs in design</span>
+          </div>
+          <div class="hero-exp__timeline">
+            <span class="hero-exp__year">2018</span>
+            <div class="hero-exp__track">
+              <div class="hero-exp__fill"></div>
+            </div>
+            <span class="hero-exp__year">Now</span>
           </div>
         </div>
+
+        <!-- About card -->
+        <div class="bento-about" id="about" role="button" tabindex="0" aria-haspopup="dialog" aria-label="Open about section">
+          <p class="bento-about__title">About me</p>
+          <div class="bento-about__photo-wrap">
+            <img src="images/kevin_profile.JPG" alt="Kevin M. Femenias" class="bento-about__img" />
+          </div>
+        </div>
+
+        <!-- CTA card -->
+        <div class="cta-card">
+        <div class="cta-card__content">
+          <span class="cta-card__avail">Open to opportunities · Copenhagen</span>
+          <p class="cta-card__heading">Let's build something people actually love.</p>
+        </div>
+          <a href="mailto:kevin.m.femenias@gmail.com" class="cta-card__btn">Get in touch →</a>
+        </div>
+
       </div>
 
-    </section>
-
-    <!-- WORK -->
-    <section class="section" id="work">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Work</h2>
-          <p class="section__subtitle">Selected case studies</p>
-        </div>
-
+      <!-- RIGHT: Bento -->
+      <div class="home-layout__bento" id="work" aria-label="Work and about">
         <div class="work__grid">
 
           <a href="web-designer.html" class="case-study case-study--1">
             <div class="case-study__preview">
+              <span class="case-study__status case-study__status--progress">In Progress</span>
               <img src="images/web_designer_cover.png" alt="ERP App Designer project preview" class="case-study__img" />
               <div class="case-study__preview-placeholder case-study__preview-placeholder--1" aria-hidden="true"></div>
             </div>
@@ -101,6 +126,7 @@
 
           <a href="smartcraft.html" class="case-study case-study--2">
             <div class="case-study__preview">
+              <span class="case-study__status case-study__status--shipped">Shipped</span>
               <img src="images/PortalHomeThumbnail.png" alt="Portal Connect dashboard designer preview" class="case-study__img" />
               <div class="case-study__preview-placeholder case-study__preview-placeholder--2" aria-hidden="true"></div>
             </div>
@@ -116,6 +142,7 @@
 
           <a href="smartcraft-website.html" class="case-study case-study--3">
             <div class="case-study__preview" style="background: #F5E0DF;">
+              <span class="case-study__status case-study__status--shipped">Shipped</span>
               <img src="images/smartcraftHome.png" alt="SmartCraft website redesign preview" class="case-study__img" style="inset: auto; bottom: 0; left: 6%; width: 88%; height: 90%; object-position: top; border-radius: 8px 8px 0 0;" />
             </div>
             <div class="case-study__body">
@@ -131,7 +158,8 @@
 
         </div>
       </div>
-    </section>
+
+    </div>
 
     <!-- WRITING — hidden until ready
     <section class="section section--alt" id="writing">
@@ -184,61 +212,38 @@
     </section>
     -->
 
-    <!-- DARK CTA -->
-    <section class="section section--dark">
-      <div class="container">
-        <div class="cta-band">
-          <p class="cta-band__label">Open to opportunities in Copenhagen</p>
-          <h2 class="cta-band__heading">Let's build something<br>people actually love.</h2>
-          <a href="mailto:kevin.m.femenias@gmail.com" class="cta-band__btn">Get in touch →</a>
+
+  </main>
+
+  <!-- ABOUT MODAL -->
+  <div class="about-modal" id="about-modal" role="dialog" aria-modal="true" aria-label="About Kevin M. Femenias">
+    <div class="about-modal__backdrop" id="about-modal-backdrop"></div>
+    <div class="about-modal__glass">
+      <button class="about-modal__close" id="about-modal-close" aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="about-modal__inner">
+        <div class="about-modal__photo-wrap">
+          <img src="images/kevin.png" alt="Kevin M. Femenias" class="about-modal__photo" />
         </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section class="about-rethink" id="about">
-      <div class="about-rethink__inner">
-
-        <div class="about-rethink__photo">
-          <div class="polaroid" id="about-polaroid" role="button" tabindex="0" aria-label="Flip photo">
-            <div class="polaroid__inner">
-
-              <div class="polaroid__front">
-                <div class="polaroid__image-wrap">
-                  <img src="images/kevin.png" alt="Kevin M. Femenias" class="about-rethink__photo-img" />
-                </div>
-                <div class="polaroid__bottom-strip"></div>
-              </div>
-
-              <div class="polaroid__back">
-                <span class="polaroid__back-city">Italy</span>
-                <span class="polaroid__back-year">2025</span>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="about-rethink__content">
-          <span class="about-rethink__label">About</span>
-          <h2 class="about-rethink__headline">Making complex systems<br>feel intuitive and human.</h2>
-          <div class="about-rethink__bio">
+        <div class="about-modal__content">
+          <span class="about-modal__label">About</span>
+          <h2 class="about-modal__headline">Making complex systems feel intuitive and human.</h2>
+          <div class="about-modal__bio">
             <p>I'm a Senior UX Designer based in Gothenburg, Sweden, currently looking for new opportunities in Copenhagen. I work at the intersection of user research, strategy, and interface design, with a focus on making complex enterprise systems feel intuitive and human.</p>
             <p>Over the past 7+ years I've worked across B2B SaaS, low-code platforms, and digital products, most recently leading design for Novacura Flow Connect, where I own the design system and shape product experiences used by thousands of users across enterprise customers worldwide.</p>
-            <p>I care deeply about the craft of design, but I care just as much about why it matters. How a better flow reduces friction, how a clearer UI builds trust, and how good design ultimately moves the business forward.</p>
-            <p>Outside of work, I'm a devoted book nerd. I used to run a YouTube channel where I talked about books, collaborated with publishers, and interviewed authors. While I no longer upload, I'm still very active in online book communities. I'm also drawn to small teams building ambitious, detail-obsessed software. The kind where you can tell someone really cared.</p>
+            <p>I care deeply about the craft of design, but I care just as much about why it matters — how a better flow reduces friction, how a clearer UI builds trust, and how good design moves the business forward.</p>
+            <p>Outside of work, I'm a devoted book nerd. I used to run a YouTube channel where I talked about books and interviewed authors. I'm also drawn to small teams building ambitious, detail-obsessed software.</p>
           </div>
-          <div class="about-rethink__links">
+          <div class="about-modal__links">
             <a href="mailto:kevin.m.femenias@gmail.com">kevin.m.femenias@gmail.com</a>
             <a href="https://www.linkedin.com/in/kevin-m-femen%C3%ADas-4a117b157/" target="_blank" rel="noopener">LinkedIn</a>
             <a href="CV/Kevin M. Femenías_CV_2026.pdf" target="_blank" rel="noopener">CV</a>
           </div>
         </div>
-
       </div>
-    </section>
-
-  </main>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
