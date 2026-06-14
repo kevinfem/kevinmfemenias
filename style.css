@@ -469,31 +469,39 @@ img, svg {
   gap: 4px;
 }
 
-.hero-exp__main {
+.hero-exp__header {
   display: flex;
   align-items: baseline;
-  gap: 8px;
-  margin: 6px 0 16px;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.hero-exp__summary {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
 }
 
 .hero-exp__num {
   font-family: var(--font-hero);
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
 }
 
 .hero-exp__unit {
   font-family: var(--font-accent);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--color-ink-70);
 }
 
 .hero-exp__timeline {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
+  padding: 0 4px;
 }
 
 .hero-exp__year {
@@ -506,19 +514,148 @@ img, svg {
 }
 
 .hero-exp__track {
+  position: relative;
   flex: 1;
-  height: 3px;
-  background: rgba(0, 0, 0, 0.08);
-  border-radius: 100px;
-  overflow: hidden;
+  height: 10px;
 }
 
-.hero-exp__fill {
-  height: 100%;
-  width: 0%;
-  background: var(--color-ink);
+.hero-exp__track::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 100px;
-  transition: width 1.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateY(-50%);
+}
+
+/* Work history sections on the timeline */
+.hero-exp__segment {
+  position: absolute;
+  top: 0;
+  height: 10px;
+  border-radius: 100px;
+  background: #1F6EF4;
+  border: none;
+  padding: 0;
+  transform-origin: left center;
+  opacity: 0;
+  transform: scaleX(0.4);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), background var(--transition), height var(--transition), top var(--transition);
+}
+
+.hero-exp__track.is-visible .hero-exp__segment {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.hero-exp__segment:hover,
+.hero-exp__segment:focus-visible,
+.hero-exp__segment.is-active {
+  z-index: 2;
+  border-radius: 100px;
+}
+
+.hero-exp__track.is-visible .hero-exp__segment:hover,
+.hero-exp__track.is-visible .hero-exp__segment:focus-visible,
+.hero-exp__track.is-visible .hero-exp__segment.is-active {
+  transform: scaleX(1);
+  height: 16px;
+  top: -3px;
+  border-radius: 40px;
+}
+
+.hero-exp__tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  width: auto;
+  /*
+  transform: translateX(-50%) translateY(6px);
+  */
+  background: var(--color-ink);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition), transform var(--transition);
+  box-shadow: var(--shadow);
+  z-index: 5;
+}
+
+.hero-exp__tooltip strong {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.hero-exp__tooltip-company {
+  display: block;
+}
+
+.hero-exp__tooltip-date {
+  display: block;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.hero-exp__tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--color-ink);
+}
+
+.hero-exp__segment--first .hero-exp__tooltip {
+  left: 0;
+  transform: translateX(0) translateY(6px);
+}
+
+.hero-exp__segment--first .hero-exp__tooltip::after {
+  left: 10px;
+  transform: translateX(0);
+}
+
+.hero-exp__segment--last .hero-exp__tooltip {
+  left: auto;
+  right: 0;
+  transform: translateX(0) translateY(6px);
+}
+
+.hero-exp__segment--last .hero-exp__tooltip::after {
+  left: auto;
+  right: 10px;
+  transform: translateX(0);
+}
+
+.hero-exp__segment:hover .hero-exp__tooltip,
+.hero-exp__segment:focus-visible .hero-exp__tooltip,
+.hero-exp__segment.is-active .hero-exp__tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.hero-exp__segment--first:hover .hero-exp__tooltip,
+.hero-exp__segment--first:focus-visible .hero-exp__tooltip,
+.hero-exp__segment--first.is-active .hero-exp__tooltip,
+.hero-exp__segment--last:hover .hero-exp__tooltip,
+.hero-exp__segment--last:focus-visible .hero-exp__tooltip,
+.hero-exp__segment--last.is-active .hero-exp__tooltip {
+  transform: translateX(0) translateY(0);
 }
 
 /* ---- Bento info cards ---- */
@@ -674,7 +811,7 @@ img, svg {
   --y: 50%;
   position: relative;
   overflow: hidden;
-  background: #c9f5d8;
+  background: #e8f5e9;
   border-radius: 22px;
   padding: 24px;
   display: flex;
@@ -683,7 +820,7 @@ img, svg {
   gap: 16px;
 }
 .cta-card__content {
-  color: #0f5f24;
+  color: #35C759;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -736,7 +873,7 @@ img, svg {
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.25;
-  color: #1a5e2e;
+  color: #00541f;
   position: relative;
 }
 
@@ -745,7 +882,7 @@ img, svg {
   align-items: center;
   align-self: center;
   padding: 10px 20px;
-  background: #1a5e2e;
+  background: #018933;
   color: #ffffff;
   border-radius: 100px;
   font-family: var(--font-accent);
@@ -1012,22 +1149,43 @@ img, svg {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: visibility 0s linear 0.4s;
 }
 
 .about-modal.open {
-  opacity: 1;
+  visibility: visible;
   pointer-events: all;
+  transition-delay: 0s;
 }
 
 .about-modal__backdrop {
   position: absolute;
   inset: 0;
+  background: rgba(10, 10, 10, 0);
+  transition: background 0.4s ease;
+}
+
+.about-modal.open .about-modal__backdrop {
   background: rgba(10, 10, 10, 0.45);
+}
+
+/* Blur is applied via a separate, fully-blurred layer that crossfades in.
+   Animating backdrop-filter's blur radius directly renders choppy in most
+   browsers, but fading its opacity is smooth. */
+.about-modal__backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.about-modal.open .about-modal__backdrop::after {
+  opacity: 1;
 }
 
 /* The glass panel */
@@ -1044,8 +1202,8 @@ img, svg {
   /* Liquid glass material */
   background: linear-gradient(
     145deg,
-    rgba(255, 255, 255, 0.38) 0%,
-    rgba(255, 255, 255, 0.14) 100%
+    rgba(255, 255, 255, 0.979) 0%,
+    rgba(255, 255, 255, 0.246) 100%
   );
   backdrop-filter: blur(48px) saturate(180%) brightness(108%);
   -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(108%);
@@ -1062,7 +1220,7 @@ img, svg {
   transform: translateY(16px) scale(0.97);
   transition:
     transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 0.3s ease;
+    opacity 0.4s ease;
   opacity: 0;
 }
 
@@ -1106,7 +1264,7 @@ img, svg {
 }
 
 .about-modal__close:hover {
-  background: rgba(0, 0, 0, 0.16);
+  background: rgba(0, 0, 0, 0.235);
 }
 
 .about-modal__close i {

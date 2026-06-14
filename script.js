@@ -1,20 +1,115 @@
 // Initialise Lucide icons
 document.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
 
-// Experience card — dynamic years + timeline fill
+// Experience card — dynamic years + timeline work history sections
 (function () {
   const numEl = document.getElementById('exp-years');
-  const fill  = document.querySelector('.hero-exp__fill');
+  const track = document.querySelector('.hero-exp__track');
   if (!numEl) return;
 
-  const years = new Date().getFullYear() - 2018;
+  const timelineStart = new Date(2018, 0, 1);
+  const now = new Date();
+  const years = now.getFullYear() - 2018;
   numEl.textContent = years;
 
-  if (fill) {
+  if (track) {
+    const jobs = [
+      { role: 'Sr. UX Designer', company: 'Novacura', start: new Date(2024, 3, 1), end: now, label: 'Apr 2024 – Now' },
+      { role: 'UX Designer', company: 'Novacura', start: new Date(2022, 4, 1), end: new Date(2024, 3, 1), label: 'May 2022 – Apr 2024' },
+      { role: 'UX Design Intern', company: 'Norwegian Refugee Council', start: new Date(2021, 1, 1), end: new Date(2021, 10, 1), label: 'Feb 2021 – Nov 2021' },
+      { role: 'Product Designer', company: 'Freelance, Berlin', start: new Date(2019, 8, 1), end: new Date(2022, 3, 1), label: 'Sep 2019 – Apr 2022' },
+      { role: 'Product Designer', company: 'Canadian Streetfood UCG', start: new Date(2019, 6, 1), end: new Date(2019, 7, 1), label: 'Jul 2019 – Aug 2019' },
+      { role: 'UX Design Intern', company: '', start: new Date(2018, 2, 1), end: new Date(2018, 5, 1), label: 'Mar 2018 – Jun 2018' },
+    ].sort((a, b) => a.start - b.start);
+
+    const totalSpan = now - timelineStart;
+    const minWidth = 2.5; // percent
+    const inset = 0.5; // percent, gap between adjacent sections
+
+    // Shades of blue (Apple system blue family) from oldest to newest era
+    const eraColors = ['#0040DD', '#0066FF', '#007AFF', '#0A84FF', '#409CFF', '#64D2FF'];
+    jobs.forEach((job, i) => {
+      job.color = eraColors[Math.min(i, eraColors.length - 1)];
+    });
+
+    // If a shorter role overlaps a longer one, split the longer one around
+    // it so every role fits on a single row without stacking lanes
+    function splitOverlaps(list) {
+      for (let i = 0; i < list.length; i++) {
+        for (let j = 0; j < list.length; j++) {
+          if (i === j) continue;
+          const host = list[i];
+          const filler = list[j];
+          const hostDuration = host.end - host.start;
+          const fillerDuration = filler.end - filler.start;
+          const nested = filler.start >= host.start && filler.end <= host.end && fillerDuration < hostDuration;
+          if (!nested) continue;
+          const before = { ...host, end: filler.start };
+          const after = { ...host, start: filler.end };
+          const next = list.slice();
+          next.splice(i, 1, before, after);
+          return splitOverlaps(next);
+        }
+      }
+      return list.filter(job => job.end > job.start).sort((a, b) => a.start - b.start);
+    }
+
+    const segments = splitOverlaps(jobs);
+
+    segments.forEach(job => {
+      job.left = ((job.start - timelineStart) / totalSpan) * 100;
+      job.naturalWidth = ((job.end - job.start) / totalSpan) * 100;
+    });
+
+    // Widen short stints to a minimum size without overlapping the next role's start
+    segments.forEach((job, i) => {
+      const maxWidth = (i + 1 < segments.length ? segments[i + 1].left : 100) - job.left;
+      const width = Math.min(Math.max(job.naturalWidth, minWidth), maxWidth);
+      job.width = Math.max(width - inset, 1);
+      job.left = job.left + inset / 2;
+    });
+
+    segments.forEach(job => {
+      const segment = document.createElement('button');
+      segment.type = 'button';
+      segment.className = 'hero-exp__segment';
+      segment.style.left = `${job.left}%`;
+      segment.style.width = `${job.width}%`;
+      segment.style.background = job.color;
+
+      const edge = job.left + job.width;
+      if (job.left < 15) segment.classList.add('hero-exp__segment--first');
+      if (edge > 85) segment.classList.add('hero-exp__segment--last');
+
+      const companyText = job.company ? ` at ${job.company}` : '';
+      segment.setAttribute('aria-label', `${job.role}${companyText}, ${job.label}`);
+
+      const companyLine = job.company ? `<span class="hero-exp__tooltip-company">${job.company}</span>` : '';
+      segment.innerHTML = `
+        <span class="hero-exp__tooltip">
+          <strong>${job.role}</strong>${companyLine}
+          <span class="hero-exp__tooltip-date">${job.label}</span>
+        </span>
+      `;
+
+      segment.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = segment.classList.contains('is-active');
+        document.querySelectorAll('.hero-exp__segment.is-active').forEach(s => s.classList.remove('is-active'));
+        if (!isActive) segment.classList.add('is-active');
+      });
+
+      track.appendChild(segment);
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.hero-exp__segment.is-active').forEach(s => s.classList.remove('is-active'));
+    });
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        fill.style.width = '100%';
+        track.classList.add('is-visible');
         observer.disconnect();
       });
     }, { threshold: 0.4 });
