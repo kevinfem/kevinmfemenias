@@ -313,7 +313,7 @@ img, svg {
   display: grid;
   grid-template-columns: 5fr 7fr;
   gap: 32px;
-  padding: 64px 40px 100px;
+  padding: 24px 40px 100px;
   align-items: start;
 }
 
@@ -1987,7 +1987,7 @@ img, svg {
 
   .home-layout {
     grid-template-columns: 1fr;
-    padding: 10px 20px 60px;
+    padding: 0px 20px 60px;
     gap: 48px;
   }
 
