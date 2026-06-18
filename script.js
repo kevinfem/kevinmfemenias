@@ -191,29 +191,31 @@ document.querySelectorAll('.case-study__img, .post-card__thumb-img, .cs-hero__im
 const burger = document.querySelector('.nav__burger');
 const mobileMenu = document.querySelector('.nav__mobile-menu');
 
-burger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('open');
-  burger.setAttribute('aria-expanded', isOpen);
+if (burger && mobileMenu) {
+  burger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
 
-  const spans = burger.querySelectorAll('span');
-  if (isOpen) {
-    spans[0].style.transform = 'translateY(6.5px) rotate(45deg)';
-    spans[1].style.transform = 'translateY(-6.5px) rotate(-45deg)';
-  } else {
-    spans[0].style.transform = '';
-    spans[1].style.transform = '';
-  }
-});
-
-// Close mobile menu when a link is clicked
-mobileMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
     const spans = burger.querySelectorAll('span');
-    spans[0].style.transform = '';
-    spans[1].style.transform = '';
+    if (isOpen) {
+      spans[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+      spans[1].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+    } else {
+      spans[0].style.transform = '';
+      spans[1].style.transform = '';
+    }
   });
-});
+
+  // Close mobile menu when a link is clicked
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      const spans = burger.querySelectorAll('span');
+      spans[0].style.transform = '';
+      spans[1].style.transform = '';
+    });
+  });
+}
 
 // Hero photo — 3D tilt on cursor hover
 const heroPhoto = document.querySelector('.hero__photo');
@@ -366,7 +368,9 @@ if (showcaseImgs.length) {
 const nav = document.querySelector('.nav');
 const scrollIndicator = document.querySelector('.hero__scroll');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 24);
+  if (nav) {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+  }
   if (scrollIndicator) {
     scrollIndicator.style.opacity = Math.max(0, 1 - window.scrollY / 120);
   }
