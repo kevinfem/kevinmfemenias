@@ -303,6 +303,16 @@ img, svg {
   66%       { border-radius: 55% 45% 38% 62% / 52% 36% 64% 48%; }
 }
 
+@keyframes photoFloatBack {
+  0%, 100% { transform: rotate(-9deg) translateY(0); }
+  50%       { transform: rotate(-6deg) translateY(-6px); }
+}
+
+@keyframes photoFloatFront {
+  0%, 100% { transform: rotate(8deg) translateY(0); }
+  50%       { transform: rotate(11deg) translateY(-6px); }
+}
+
 /* ============================================
    HERO
    ============================================ */
@@ -325,6 +335,10 @@ img, svg {
 
 .home-layout__bento {
   min-width: 0;
+}
+
+.home-layout__bento .cta-card {
+  margin-top: 32px;
 }
 
 /* ---- Hero elements ---- */
@@ -881,6 +895,7 @@ img, svg {
   display: inline-flex;
   align-items: center;
   align-self: center;
+  flex-shrink: 0;
   padding: 10px 20px;
   background: #018933;
   color: #ffffff;
@@ -889,6 +904,7 @@ img, svg {
   font-size: 0.8125rem;
   font-weight: 500;
   text-decoration: none;
+  white-space: nowrap;
   position: relative;
   transition: opacity 0.2s ease;
 }
@@ -1116,18 +1132,46 @@ img, svg {
   pointer-events: none;
 }
 
+.bento-about__photos {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
 .bento-about__photo-wrap {
-  width: 190px;
-  height: 190px;
-  border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
+  position: absolute;
+  width: 62%;
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
-  animation: blobMorph 8s ease-in-out infinite;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14), 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.bento-about:hover .bento-about__photo-wrap {
-  transform: scale(1.05);
+.bento-about__photo-wrap--back {
+  top: 8%;
+  left: 6%;
+  z-index: 1;
+  animation: photoFloatBack 6s ease-in-out infinite;
+}
+
+.bento-about__photo-wrap--front {
+  bottom: 8%;
+  right: 6%;
+  z-index: 2;
+  animation: photoFloatFront 6.5s ease-in-out infinite;
+}
+
+.bento-about:hover .bento-about__photo-wrap--back {
+  animation-play-state: paused;
+  transform: rotate(-13deg) translateY(0) scale(1.05);
+}
+
+.bento-about:hover .bento-about__photo-wrap--front {
+  animation-play-state: paused;
+  transform: rotate(12deg) translateY(0) scale(1.05);
 }
 
 .bento-about__img {
@@ -1203,7 +1247,7 @@ img, svg {
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.979) 0%,
-    rgba(255, 255, 255, 0.246) 100%
+    rgba(255, 255, 255, 0.82) 100%
   );
   backdrop-filter: blur(48px) saturate(180%) brightness(108%);
   -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(108%);
